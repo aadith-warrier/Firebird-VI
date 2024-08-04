@@ -1,0 +1,17 @@
+<launch>
+
+    <!-- rtabmap slam -->
+    <node pkg="rtabmap_slam" exec="rtabmap" args="--Rtabmap/DetectionRate 5">
+        <remap from="/rgb/image" to="/camera"/>
+        <remap from="/rgb/camera_info" to="/rgb_info"/>
+        <remap from="/depth/image" to="/depth_camera"/>
+        <remap from="/odom" to="/odom"/>
+
+        <param name="approx_sync" value="true"/>
+        <param name="use_sim_time" value="true"/>
+        <param name="queue_size" value="256"/>  
+        <param name="map_always_update" value='true'/> 
+        <param name="wait_for_transform_duration" value="1" /> 
+    </node>
+
+</launch>

@@ -1,0 +1,10 @@
+<launch>
+
+    <node pkg="tf2_ros" exec="static_transform_publisher" args="0.1333 0 0.26072 -1.57079632679 0 -1.57079632679 base_link firebird_vi/OakD-Lite/base_link/IMX214" />
+    <node pkg="tf2_ros" exec="static_transform_publisher" args="0.1333 0 0.26072 -1.57079632679 0 -1.57079632679 base_link firebird_vi/OakD-Lite/base_link/StereoOV7251" />
+
+    <node pkg="firebird_navigation" exec="odometry">
+        <param name="use_sim_time" value="true"/>
+    </node>
+
+</launch>

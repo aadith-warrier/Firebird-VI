@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<sdf version='1.10'>
+  <model name='realsense2_camera'>
+    <link name='d435i_link'>
+      <inertial>
+        <pose>0.0106 0.017500000000000002 0.012500000000000001 0 0 0</pose>
+        <mass>0.071999999999999995</mass>
+        <inertia>
+          <ixx>0.0038812429999999999</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00049894000000000002</iyy>
+          <iyz>0</iyz>
+          <izz>0.003879257000000001</izz>
+        </inertia>
+      </inertial>
+      <collision name='d435i_link_fixed_joint_lump__camera_link_collision'>
+        <pose>0.0106 0 0.012500000000000001 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.025049999999999999 0.089999999999999997 0.025000000000000001</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='d435i_link_fixed_joint_lump__camera_link_visual'>
+        <pose>0.0149 0 0.012500000000000001 1.5707963267948959 -5.5511151231257827e-17
+          1.5707963267948959</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://robot_description/meshes/realsense_d435i/d435.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name='image_sensor'>
+      <pose relative_to='camera_color_optical_frame'>0 0 0 0 0 0</pose>
+      <sensor name="IMX214" type="camera">
+        <camera>
+          <horizontal_fov>1.204</horizontal_fov>
+          <image>
+            <width>1080</width>
+            <height>1920</height>
+          </image>
+          <clip>
+            <near>0.1</near>
+            <far>100</far>
+          </clip>
+        </camera>
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+        <visualize>true</visualize>
+        <topic>camera</topic>
+      </sensor>
+    </link>
+
+    <link name='depth_sensor'>
+      <pose relative_to='camera_depth_optical_frame'>0 0 0 0 0 0</pose>
+      <sensor name="StereoOV7251" type="depth_camera">
+        <camera>
+          <horizontal_fov>1.274</horizontal_fov>
+          <image>
+            <width>480</width>
+            <height>640</height>
+            <format>R_FLOAT32</format>
+          </image>
+          <clip>
+            <near>0.2</near>
+            <far>19.1</far>
+          </clip>
+        </camera>
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+        <visualize>true</visualize>
+        <topic>depth_camera</topic>
+      </sensor>
+    </link>
+
+    <frame name='camera_accel_optical_joint' attached_to='camera_accel_frame'>
+      <pose>0 0 0 -1.5707963267948959 -5.5511151231257827e-17 -1.5707963267948959</pose>
+    </frame>
+    <frame name='camera_accel_optical_frame' attached_to='camera_accel_optical_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='camera_accel_joint' attached_to='camera_link'>
+      <pose>-0.01174 -0.0055199999999999997 0.0051000000000000004 0 0 0</pose>
+    </frame>
+    <frame name='camera_accel_frame' attached_to='camera_accel_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='camera_color_optical_joint' attached_to='camera_color_frame'>
+      <pose>0 0 0 -1.5707963267948959 -5.5511151231257827e-17 -1.5707963267948959</pose>
+    </frame>
+    <frame name='camera_color_optical_frame' attached_to='camera_color_optical_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='camera_color_joint' attached_to='camera_link'>
+      <pose>0 0.014999999999999999 0 0 0 0</pose>
+    </frame>
+    <frame name='camera_color_frame' attached_to='camera_color_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='camera_depth_optical_joint' attached_to='camera_depth_frame'>
+      <pose>0 0 0 -1.5707963267948959 -5.5511151231257827e-17 -1.5707963267948959</pose>
+    </frame>
+    <frame name='camera_depth_optical_frame' attached_to='camera_depth_optical_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='camera_depth_joint' attached_to='camera_link'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='camera_depth_frame' attached_to='camera_depth_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='camera_gyro_optical_joint' attached_to='camera_gyro_frame'>
+      <pose>0 0 0 -1.5707963267948959 -5.5511151231257827e-17 -1.5707963267948959</pose>
+    </frame>
+    <frame name='camera_gyro_optical_frame' attached_to='camera_gyro_optical_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='camera_gyro_joint' attached_to='camera_link'>
+      <pose>-0.01174 -0.0055199999999999997 0.0051000000000000004 0 0 0</pose>
+    </frame>
+    <frame name='camera_gyro_frame' attached_to='camera_gyro_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='camera_infra1_optical_joint' attached_to='camera_infra1_frame'>
+      <pose>0 0 0 -1.5707963267948959 -5.5511151231257827e-17 -1.5707963267948959</pose>
+    </frame>
+    <frame name='camera_infra1_optical_frame' attached_to='camera_infra1_optical_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='camera_infra1_joint' attached_to='camera_link'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='camera_infra1_frame' attached_to='camera_infra1_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='camera_infra2_optical_joint' attached_to='camera_infra2_frame'>
+      <pose>0 0 0 -1.5707963267948959 -5.5511151231257827e-17 -1.5707963267948959</pose>
+    </frame>
+    <frame name='camera_infra2_optical_frame' attached_to='camera_infra2_optical_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='camera_infra2_joint' attached_to='camera_link'>
+      <pose>0 -0.050000000000000003 0 0 0 0</pose>
+    </frame>
+    <frame name='camera_infra2_frame' attached_to='camera_infra2_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='camera_link_joint' attached_to='camera_bottom_screw_frame'>
+      <pose>0.0106 0.017500000000000002 0.012500000000000001 0 0 0</pose>
+    </frame>
+    <frame name='camera_link' attached_to='camera_link_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='camera_joint' attached_to='d435i_link'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='camera_bottom_screw_frame' attached_to='camera_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+  </model>
+</sdf>
