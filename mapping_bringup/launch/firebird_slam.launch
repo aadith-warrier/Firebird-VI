@@ -12,6 +12,7 @@
         <param name="queue_size" value="256"/>  
         <param name="map_always_update" value='true'/> 
         <param name="wait_for_transform_duration" value="1" /> 
+        <param name="gen_scan" value='true' />
     </node>
 
 </launch>
