@@ -12,6 +12,7 @@ bt_navigator:
       plugin: "nav2_bt_navigator::NavigateToPoseNavigator"
     navigate_through_poses:
       plugin: "nav2_bt_navigator::NavigateThroughPosesNavigator"
+
     # 'default_nav_through_poses_bt_xml' and 'default_nav_to_pose_bt_xml' are use defaults:
     # nav2_bt_navigator/navigate_to_pose_w_replanning_and_recovery.xml
     # nav2_bt_navigator/navigate_through_poses_w_replanning_and_recovery.xml
@@ -30,7 +31,7 @@ controller_server:
     use_sim_time: True
     controller_frequency: 20.0
     min_x_velocity_threshold: 0.001
-    min_y_velocity_threshold: 0.5
+    min_y_velocity_threshold: 0.001
     min_theta_velocity_threshold: 0.001
     failure_tolerance: 0.3
     progress_checker_plugins: ["progress_checker"]
@@ -40,6 +41,7 @@ controller_server:
 
     # Progress checker parameters
     progress_checker:
+      verbose: 4
       plugin: "nav2_controller::SimpleProgressChecker"
       required_movement_radius: 0.5
       movement_time_allowance: 10.0
@@ -159,8 +161,8 @@ local_costmap:
       plugins: ["voxel_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 3.0
-        inflation_radius: 0.70
+        cost_scaling_factor: 1.5
+        inflation_radius: 0.15
       voxel_layer:
         plugin: "nav2_costmap_2d::VoxelLayer"
         enabled: True
@@ -219,8 +221,8 @@ global_costmap:
         map_subscribe_transient_local: True
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 3.0
-        inflation_radius: 0.7
+        cost_scaling_factor: 1.5
+        inflation_radius: 0.15
       always_send_full_costmap: True
 
 # The yaml_filename does not need to be specified since it going to be set by defaults in launch.
@@ -323,7 +325,7 @@ collision_monitor:
     cmd_vel_out_topic: "cmd_vel"
     state_topic: "collision_monitor_state"
     transform_tolerance: 0.2
-    source_timeout: 1.0
+    source_timeout: 0.0
     base_shift_correction: True
     stop_pub_timeout: 2.0
     # Polygons represent zone around the robot for "stop", "slowdown" and "limit" action types,
@@ -336,7 +338,7 @@ collision_monitor:
       time_before_collision: 1.2
       simulation_time_step: 0.1
       min_points: 6
-      visualize: False
+      visualize: True
       enabled: True
     observation_sources: ["pointcloud"]
     pointcloud:
